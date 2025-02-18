@@ -6,10 +6,6 @@ public class BaseController : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody;
 
-    [SerializeField] private GameObject frontSprite;
-    [SerializeField] private GameObject backSprite;
-    [SerializeField] private GameObject sideSprite;
-
 
     [SerializeField] private Transform weaponPivot;
 
@@ -21,11 +17,14 @@ public class BaseController : MonoBehaviour
 
     private Vector2 knockback = Vector2.zero;  // 넉백 방향 가져옴
     private float knockbackDuration = 0.0f;
-   
+
+    // 애니메이션
+    protected AnimationHandler AnimationHandler;   
 
     protected virtual void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        AnimationHandler = GetComponent<AnimationHandler>();
     }
 
     protected virtual void Start()
@@ -62,6 +61,7 @@ public class BaseController : MonoBehaviour
             direction += knockback;
         } 
         _rigidbody.velocity = direction;
+        AnimationHandler.Move(direction);
     }
 
     private void Rotate(Vector2 direction)
@@ -69,27 +69,7 @@ public class BaseController : MonoBehaviour
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; // Mathf.Rad2Deg 라디안 -> 도
         bool isLeft = Mathf.Abs(rotZ) > 90f;
 
-        frontSprite.SetActive(false);
-        backSprite.SetActive(false);
-        sideSprite.SetActive(false);
-
-        if (Mathf.Abs(direction.x) < Mathf.Abs(direction.y)) // 수직 방향 우선
-        {
-            if (direction.y > 0)
-            {
-                backSprite.SetActive(true); // 뒷모습 표시
-            }
-            else
-            {
-                frontSprite.SetActive(true); // 앞모습 표시
-            }
-        }
-        else
-        {
-            sideSprite.SetActive(true); // 옆모습 표시
-            sideSprite.GetComponent<SpriteRenderer>().flipX = isLeft; // 왼쪽||오른쪽 반전
-        }
-
+        AnimationHandler?.SetAnimationDirection(direction);
 
         if (weaponPivot != null)
         {
