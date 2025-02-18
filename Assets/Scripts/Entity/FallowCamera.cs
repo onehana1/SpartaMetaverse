@@ -15,7 +15,9 @@ public class FallowCamera : MonoBehaviour
 
     private void Start()
     {
-        if (target == null || mapBounds == null) return;
+        if (mapBounds == null) return;
+
+        offsetX = transform.position.x - target.position.x;
 
         Bounds bounds = mapBounds.localBounds;
         float camHalfWidth = Camera.main.orthographicSize * Camera.main.aspect;
@@ -25,7 +27,7 @@ public class FallowCamera : MonoBehaviour
         maxX = bounds.max.x - camHalfWidth;
         minY = bounds.min.y + camHalfHeight;
         maxY = bounds.max.y - camHalfHeight;
-        
+
     }
 
     private void LateUpdate()
@@ -34,8 +36,11 @@ public class FallowCamera : MonoBehaviour
 
         Vector3 targetPosition = new Vector3(target.position.x + offsetX, target.position.y + offsetY, transform.position.z);
 
-        targetPosition.x = Mathf.Clamp(targetPosition.x, minX, maxX);
-        targetPosition.y = Mathf.Clamp(targetPosition.y, minY, maxY);
+        if (mapBounds != null)
+        {
+            targetPosition.x = Mathf.Clamp(targetPosition.x + offsetX, minX, maxX);
+            targetPosition.y = Mathf.Clamp(targetPosition.y + offsetY, minY, maxY);
+        }
 
         transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
     }

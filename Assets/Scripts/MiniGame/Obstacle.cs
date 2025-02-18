@@ -38,7 +38,12 @@ public class Obstacle : MonoBehaviour
         return placePosition;
     }
 
-
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        Player player = other.GetComponent<Player>();
+        if (player != null)
+            gameManager.AddScore(1);
+    }
 
 
 }
