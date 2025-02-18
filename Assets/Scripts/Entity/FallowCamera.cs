@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -9,6 +10,7 @@ public class FallowCamera : MonoBehaviour
     public Tilemap mapBounds;
     private float minX, maxX, minY, maxY;
     [SerializeField] private float offsetX, offsetY;
+    [SerializeField] private float smoothSpeed = 5f; // 카메라 이동 속도
 
 
     private void Start()
@@ -30,10 +32,11 @@ public class FallowCamera : MonoBehaviour
     {
         if (target == null) return;
 
-        Vector3 pos = transform.position;
-        pos.x = Mathf.Clamp(target.position.x + offsetX, minX, maxX);
-        pos.y = Mathf.Clamp(target.position.y + offsetY, minY, maxY);
+        Vector3 targetPosition = new Vector3(target.position.x + offsetX, target.position.y + offsetY, transform.position.z);
 
-        transform.position = pos;
+        targetPosition.x = Mathf.Clamp(targetPosition.x, minX, maxX);
+        targetPosition.y = Mathf.Clamp(targetPosition.y, minY, maxY);
+
+        transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
     }
 }
