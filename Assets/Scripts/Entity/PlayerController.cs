@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : BaseController
 {
     private Camera camera;
+    private bool isNearDoor = false;
 
     protected override void Start()
     {
@@ -41,6 +43,20 @@ public class PlayerController : BaseController
             }
         }
 
+        if (isNearDoor && Input.GetKeyDown(KeyCode.F))
+        {
+            SceneManager.LoadScene("MiniGameScene");
+        }
+
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("HouseDoor")) // House의 Collision 오브젝트에 Tag 설정 필요
+        {
+            isNearDoor = true;
+            Debug.Log("집 근처에 있음");
+        }
+    }
+
 }
 
