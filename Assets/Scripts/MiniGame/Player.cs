@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -10,6 +11,8 @@ public class Player : MonoBehaviour
     public float flapForce = 6f;
     public float forwardSpeed = 3f;
     public bool isDead = false;
+    public bool isReady = false;
+
     float deathCooldown = 0f;
 
     bool isFlap = false;
@@ -39,19 +42,21 @@ public class Player : MonoBehaviour
         if (_rigidbody == null)
             Debug.LogError("NOT FOUNDED RIGIDBODY");
 
-
+        isReady = true;
 
 
     }
 
     private void Update()
     {
+        if (!isReady) return;
         if (isDead)
         {
            // Debug.Log("³Ê Á×À½");
 
-            if (deathCooldown <= 0)
+            if (!gameManager.isGameOver && deathCooldown <= 0)
             {
+                isReady = false;
                 gameManager.GameOver();
             }
             else

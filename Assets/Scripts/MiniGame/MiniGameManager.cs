@@ -12,6 +12,8 @@ public class MiniGameManager : MonoBehaviour
 
     private UIManager uiManager;
     public bool isFirstLoading = true;
+    public bool isGameOver = false;
+
     public static MiniGameManager Instance
     {
         get { return gameManager; }
@@ -60,6 +62,7 @@ public class MiniGameManager : MonoBehaviour
 
     public void StartGame()
     {
+        isGameOver = false;
         uiManager.SetPlayGame();
         Debug.Log("미니게임 시작!");
         StartCoroutine(DelayedTimeScaleChange());
@@ -72,7 +75,9 @@ public class MiniGameManager : MonoBehaviour
 
     public void GameOver()
     {
-        // Debug.Log("Game Over");
+        if (isGameOver) return;
+
+        isGameOver = true;
         uiManager.SetGameOver();
     }
     public void EndMiniGame()
