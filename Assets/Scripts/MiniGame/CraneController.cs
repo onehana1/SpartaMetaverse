@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class CraneController : MonoBehaviour
 {
@@ -11,10 +12,17 @@ public class CraneController : MonoBehaviour
 
     private Vector3 startPosition; // 시작 위치 저장
 
+    [SerializeField] private GameObject joyStick; // 자동으로 집게 내려가는 시간
+    [SerializeField] private float joyStickRotation;    // 회전 시간
+    [SerializeField] private float joyStickRotationSpeed;   // 회전 속도
+
+    private Transform joyStickTransform;
+
+
     private void Start()
     {
         startPosition = transform.position; // 크레인의 초기 위치 저장
-        StartCoroutine(AutoDropCrane()); // 자동으로 집게 내려가도록 코루틴 실행
+        joyStickTransform = joyStick.transform;
     }
 
     private void Update()
@@ -23,6 +31,12 @@ public class CraneController : MonoBehaviour
         {
             float move = Input.GetAxisRaw("Horizontal"); // 좌우 입력 받기
             transform.position += new Vector3(move * moveSpeed * Time.deltaTime, 0, 0);
+            if (joyStickTransform != null)
+            {
+                float targetRz = -move * joyStickRotation;
+                Quaternion targetRotation = Quaternion.Euler(0, 0, targetRz);
+                joyStickTransform.rotation = Quaternion.Lerp(joyStickTransform.rotation, targetRotation, Time.deltaTime * joyStickRotationSpeed);
+            }
         }
 
         // 사용자가 아래키를 눌러 집게를 내릴 수도 있음
@@ -69,6 +83,6 @@ public class CraneController : MonoBehaviour
         }
 
         isDropping = false;
-        StartCoroutine(AutoDropCrane()); // 다시 자동으로 집게 내려가기 실행
+        
     }
 }

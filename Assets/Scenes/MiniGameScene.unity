@@ -173,6 +173,9 @@ MonoBehaviour:
   moveSpeed: 5
   dropSpeed: 2
   dropDelay: 3
+  joyStick: {fileID: 1602858884}
+  joyStickRotation: 30
+  joyStickRotationSpeed: 3
 --- !u!1 &110443271
 GameObject:
   m_ObjectHideFlags: 0
