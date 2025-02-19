@@ -25,8 +25,8 @@ public class HomeUI : BaseUI
         Application.Quit();
     }
 
-    protected override UIState GetUIState()
+    protected override MiniGameUIState GetUIState()
     {
-        return UIState.Home;
+        return MiniGameUIState.Home;
     }
 }

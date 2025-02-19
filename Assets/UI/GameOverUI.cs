@@ -50,8 +50,8 @@ public class GameOverUI : BaseUI
 
     }
 
-    protected override UIState GetUIState()
+    protected override MiniGameUIState GetUIState()
     {
-        return UIState.GameOver;
+        return MiniGameUIState.GameOver;
     }
 }

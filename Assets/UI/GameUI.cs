@@ -28,8 +28,8 @@ public class GameUI : BaseUI
         timeText.text = $"{minutes}:{seconds}";
     }
 
-    protected override UIState GetUIState()
+    protected override MiniGameUIState GetUIState()
     {
-        return UIState.Game;
+        return MiniGameUIState.Game;
     }
 }

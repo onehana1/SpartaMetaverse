@@ -8,6 +8,7 @@ TagManager:
   - HouseDoor
   - Background
   - Coin
+  - Tombstone
   layers:
   - Default
   - TransparentFX

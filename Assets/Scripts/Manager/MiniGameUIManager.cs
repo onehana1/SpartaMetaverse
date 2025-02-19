@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum UIState
+public enum MiniGameUIState
 {
     Home,
     Game,
@@ -15,7 +15,7 @@ public class MiniGameUIManager : MonoBehaviour
     public HomeUI homeUI;
     public GameUI gameUI;
     public GameOverUI gameOverUI;
-    private UIState currentState;
+    private MiniGameUIState currentState;
 
     public static MiniGameUIManager Instance;
 
@@ -39,21 +39,21 @@ public class MiniGameUIManager : MonoBehaviour
         gameOverUI = GetComponentInChildren<GameOverUI>(true);
         gameOverUI.Init(this);
 
-        ChangeState(UIState.Home);
+        ChangeState(MiniGameUIState.Home);
     }
 
     public void SetPlayGame()
     {
-        ChangeState(UIState.Game);
+        ChangeState(MiniGameUIState.Game);
     }
 
     public void SetGameOver()
     {
-        ChangeState(UIState.GameOver);
+        ChangeState(MiniGameUIState.GameOver);
     }
 
 
-    public void ChangeState(UIState state)
+    public void ChangeState(MiniGameUIState state)
     {
         currentState = state;
         homeUI.SetActive(currentState);
