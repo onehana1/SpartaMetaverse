@@ -15,14 +15,32 @@ public class MiniGameManager : MonoBehaviour
         get { return gameManager; }
     }
 
-    private int miniGameScore = 0; // 미니게임 점수
+    private int miniGameScore = 0;
+    private bool isGameStarted = false;
+
     private void Awake()
     {
-        gameManager = this;
+        if (gameManager == null)
+        {
+            gameManager = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        Time.timeScale = 0f;
     }
     public void AddScore(int score)
     {
         miniGameScore += score;
+    }
+
+    public void StartGame()
+    {
+        isGameStarted = true;
+        Time.timeScale = 1f;
+        Debug.Log("미니게임 시작!");
     }
 
     public void RestartGame()
