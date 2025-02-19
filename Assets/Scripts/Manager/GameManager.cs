@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     private int totalScore = 0;
     private int miniGameScore = 0; // 미니게임 점수
+    private int bestMiniGameScore = 0;
 
     private void Awake()
     {
@@ -28,12 +29,13 @@ public class GameManager : MonoBehaviour
 
     public void SetMiniGameScore(int score)
     {
-        miniGameScore = score;
+        if(score> bestMiniGameScore)
+            bestMiniGameScore = score;
     }
 
     public int GetMiniGameScore()
     {
-        return miniGameScore;
+        return bestMiniGameScore;
     }
 
     public void ApplyMiniGameScoreToTotal()

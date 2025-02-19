@@ -13,11 +13,29 @@ public class MiniGameManager : MonoBehaviour
     private MiniGameUIManager uiManager;
     public bool isFirstLoading = true;
     public bool isGameOver = false;
+
+    public bool isStart = true;
     private float elapsedTime = 0f;
     public static MiniGameManager Instance
     {
-        get { return gameManager; }
+        get
+        {
+            if (gameManager == null)
+            {
+                // 현재 씬에서 MiniGameManager 찾기
+                gameManager = FindObjectOfType<MiniGameManager>();
+
+                // 씬에 없으면 새로 생성하기
+                if (gameManager == null)
+                {
+                    GameObject managerObject = new GameObject("MiniGameManager");
+                    gameManager = managerObject.AddComponent<MiniGameManager>();
+                }
+            }
+            return gameManager;
+        }
     }
+
 
     private int miniGameScore = 0;
     private int totalScore = 0;
@@ -28,7 +46,6 @@ public class MiniGameManager : MonoBehaviour
         if (gameManager == null)
         {
             gameManager = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -42,7 +59,20 @@ public class MiniGameManager : MonoBehaviour
 
     private void Start()
     {
-        uiManager = MiniGameUIManager.Instance;
+        StartCoroutine(InitializeMiniGameUI());
+    }
+
+    private IEnumerator InitializeMiniGameUI()
+    {
+        yield return null; // UI가 씬에서 완전히 로드될 때까지 기다림
+        uiManager = FindObjectOfType<MiniGameUIManager>();
+
+        if (uiManager == null)
+        {
+            Debug.LogError("MiniGameUIManager 에러.");
+            yield break;
+        }
+
         if (!isFirstLoading)
         {
             StartGame();
@@ -53,16 +83,23 @@ public class MiniGameManager : MonoBehaviour
             isFirstLoading = false;
             Debug.Log("처음임!");
         }
+        
     }
 
     private void Update()
     {
+        if(isStart)
+        {
+            uiManager.gameObject.SetActive(true);
+            uiManager.SetHomeGame();
+        }
         if (!isGameOver)
         {
             elapsedTime += Time.deltaTime;
             MiniGameUIManager.Instance.gameUI.UpdateTimeUI(elapsedTime);
         }
     }
+
 
     public void AddScore(int score)
     {
@@ -87,6 +124,7 @@ public class MiniGameManager : MonoBehaviour
         uiManager.SetPlayGame();
         Debug.Log("미니게임 시작!");
         StartCoroutine(DelayedTimeScaleChange());
+        isStart = false;
     }
     private IEnumerator DelayedTimeScaleChange()
     {
@@ -96,24 +134,41 @@ public class MiniGameManager : MonoBehaviour
 
     public void GameOver()
     {
-        if (isGameOver) return;
+       // if (isGameOver) return;
         totalScore = CalTotalScore();
         isGameOver = true;
+        Debug.Log("게임 오버!");
+
+
+        GameManager.Instance.SetMiniGameScore(totalScore);
+
+        if (uiManager == null)
+        {
+            Debug.LogError("MiniGameUIManager가 null입니다! 다시 찾습니다.");
+            uiManager = FindObjectOfType<MiniGameUIManager>();
+        }
+
+        uiManager.gameUI.UpdateScoreUI(totalScore);
+
         uiManager.SetGameOver();
     }
     public void EndMiniGame()
     {
         // 미니게임 점수를 GameManager에 저장
         GameManager.Instance.SetMiniGameScore(totalScore);
-        Destroy(uiManager.gameObject);
 
         if (uiManager != null)
         {
             Destroy(uiManager.gameObject);
         }
 
+
+
         // 본게임으로 이동
         Time.timeScale = 1f;
         SceneManager.LoadScene("SampleScene");
+
+
     }
+
 }

@@ -35,6 +35,21 @@ public class MiniGameUIManager : UIManagerBase
         ChangeState(UIState.Home);
     }
 
+    public static void EnsureExists()
+    {
+        if (Instance == null)
+        {
+            GameObject obj = new GameObject("MiniGameUIManager");
+            Instance = obj.AddComponent<MiniGameUIManager>();
+            DontDestroyOnLoad(obj);
+        }
+    }
+
+    public void SetHomeGame()
+    {
+        ChangeState(UIState.Home);
+    }
+
     public void SetPlayGame()
     {
         ChangeState(UIState.Game);
@@ -42,6 +57,7 @@ public class MiniGameUIManager : UIManagerBase
 
     public void SetGameOver()
     {
+        Debug.Log("세팅 게임오버");
         ChangeState(UIState.GameOver);
     }
 

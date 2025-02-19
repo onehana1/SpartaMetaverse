@@ -7,6 +7,8 @@ public class PlayerController : BaseController
 {
     private Camera camera;
     private bool isNearDoor = false;
+    private bool isNearTomstone = false;
+
 
     protected override void Start()
     {
@@ -45,17 +47,32 @@ public class PlayerController : BaseController
 
         if (isNearDoor && Input.GetKeyDown(KeyCode.F))
         {
+            isNearDoor = false;
             SceneManager.LoadScene("MiniGameScene_Flappy_Bird");
+        }
+        if (isNearTomstone && Input.GetKeyDown(KeyCode.F))
+        {
+            isNearTomstone = false;
+            int highScore = GameManager.Instance != null ? GameManager.Instance.GetMiniGameScore() : 0;
+            GameUIManager.Instance.scoreUI.UpdateScoreUI(highScore);
+            GameUIManager.Instance.OpenScoreBoard();
+
         }
 
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("HouseDoor")) // House의 Collision 오브젝트에 Tag 설정 필요
+        if (other.CompareTag("HouseDoor"))
         {
             isNearDoor = true;
             Debug.Log("집 근처에 있음");
         }
+        else if (other.CompareTag("Tombstone")) 
+        {
+            isNearTomstone = true;
+            Debug.Log("비석 근처에 있음");
+        }
+
     }
 
 }

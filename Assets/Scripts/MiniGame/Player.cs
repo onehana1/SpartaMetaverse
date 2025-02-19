@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
             if (!gameManager.isGameOver && deathCooldown <= 0)
             {
                 //isReady = false;
+                Debug.Log("³Ê Á×À½");
                 gameManager.GameOver();
                 //this.gameObject.SetActive(false);
             }
