@@ -16,11 +16,11 @@ public class Player : MonoBehaviour
 
     public bool godMode = false;
 
-    GameManager gameManager = null;
+    MiniGameManager gameManager = null;
 
     private void Start()
     {
-        gameManager = GameManager.Instance;
+        gameManager = MiniGameManager.Instance;
 
         animator = GetComponentInChildren<Animator>();
         _rigidbody = GetComponent<Rigidbody2D>();
