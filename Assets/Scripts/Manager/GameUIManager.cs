@@ -8,6 +8,7 @@ public class GameUIManager : UIManagerBase
     public ScoreBoardUI scoreUI;
 
     private UIState currentState;
+    public EnterUI enterUI; // Enter UI ÂüÁ¶
 
     public static GameUIManager Instance;
 
@@ -16,7 +17,7 @@ public class GameUIManager : UIManagerBase
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -33,6 +34,16 @@ public class GameUIManager : UIManagerBase
     public void CloseScoreBoard()
     {
         scoreUI.gameObject.SetActive(false);
+    }
+
+    public void OpenEnterUI()
+    {
+        enterUI.gameObject.SetActive(true);
+    }
+
+    public void CloseEnterUI()
+    {
+        enterUI.gameObject.SetActive(false);
     }
 
 

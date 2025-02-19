@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 public class PlayerController : BaseController
 {
     private Camera camera;
-    private bool isNearDoor = false;
-    private bool isNearTomstone = false;
-    private bool isNearCraneDoor = false;
+    public bool isNearDoor = false;
+    public bool isNearTomstone = false;
+    public bool isNearCraneDoor = false;
     [SerializeField] private GameObject playerImage;
     [SerializeField] private GameObject RidePivot;
     private bool isRide = false;
@@ -53,8 +53,9 @@ public class PlayerController : BaseController
 
         if (isNearDoor && Input.GetKeyDown(KeyCode.F))
         {
-            isNearDoor = false;
-            SceneManager.LoadScene("MiniGameScene_Flappy_Bird");
+           
+            GameUIManager.Instance.OpenEnterUI();
+            // SceneManager.LoadScene("MiniGameScene_Flappy_Bird");
         }
         if (isNearTomstone && Input.GetKeyDown(KeyCode.F))
         {
@@ -66,8 +67,9 @@ public class PlayerController : BaseController
         }
         if (isNearCraneDoor && Input.GetKeyDown(KeyCode.F))
         {
-            isNearCraneDoor = false;
-            SceneManager.LoadScene("MiniGameScene");
+            
+            GameUIManager.Instance.OpenEnterUI();
+            // SceneManager.LoadScene("MiniGameScene");
         }
 
         if (Input.GetKeyDown(KeyCode.H))

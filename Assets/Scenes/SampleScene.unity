@@ -527,6 +527,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponPivot: {fileID: 1463125291}
+  isNearDoor: 0
+  isNearTomstone: 0
+  isNearCraneDoor: 0
   playerImage: {fileID: 1657963028}
   RidePivot: {fileID: 1313679130}
 --- !u!114 &149016941
@@ -2097,7 +2100,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 368286006}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 843626956}
+        m_TargetAssemblyTypeName: EnterUI, Assembly-CSharp
+        m_MethodName: OnClickExitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &368286006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3662,13 +3677,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 843626955}
+  - component: {fileID: 843626956}
   m_Layer: 5
   m_Name: EnterUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &843626955
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3689,6 +3705,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &843626956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843626954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f27396d15003b4da9e7f4f0d551b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exitButton: {fileID: 368286005}
+  enterButton: {fileID: 1976505802}
+  playerController: {fileID: 149016940}
 --- !u!1 &966493335
 GameObject:
   m_ObjectHideFlags: 0
@@ -12495,6 +12526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreUI: {fileID: 1560451494}
+  enterUI: {fileID: 843626956}
 --- !u!1 &1954484144
 GameObject:
   m_ObjectHideFlags: 0
@@ -19624,7 +19656,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1976505803}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 843626956}
+        m_TargetAssemblyTypeName: EnterUI, Assembly-CSharp
+        m_MethodName: OnClickEnterButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1976505803
 MonoBehaviour:
   m_ObjectHideFlags: 0

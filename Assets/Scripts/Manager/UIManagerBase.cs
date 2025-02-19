@@ -6,7 +6,8 @@ public enum UIState
     Home,
     Game,
     GameOver,
-    Score
+    Score,
+    Enter
 }
 
 public abstract class UIManagerBase : MonoBehaviour
