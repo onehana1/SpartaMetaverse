@@ -15,7 +15,12 @@ public class MiniGameManager : MonoBehaviour
     public bool isGameOver = false;
 
     public bool isStart = true;
-    private float elapsedTime = 0f;
+    [SerializeField] private float elapsedTime = 0f;
+
+    [SerializeField] private int miniGameScore = 0;
+    [SerializeField] private int totalScore = 0;
+
+
     public static MiniGameManager Instance
     {
         get
@@ -28,6 +33,7 @@ public class MiniGameManager : MonoBehaviour
                 // 씬에 없으면 새로 생성하기
                 if (gameManager == null)
                 {
+                    Debug.Log("생성한다고요? 지금요?");
                     GameObject managerObject = new GameObject("MiniGameManager");
                     gameManager = managerObject.AddComponent<MiniGameManager>();
                 }
@@ -37,19 +43,15 @@ public class MiniGameManager : MonoBehaviour
     }
 
 
-    private int miniGameScore = 0;
-    private int totalScore = 0;
 
 
     private void Awake()
     {
+
         if (gameManager == null)
         {
+            Debug.Log("설마 새로생기니?");
             gameManager = this;
-        }
-        else
-        {
-            Destroy(gameObject);
         }
 
         uiManager = FindObjectOfType<MiniGameUIManager>();
@@ -59,6 +61,8 @@ public class MiniGameManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("설마 새로생기니?");
+
         StartCoroutine(InitializeMiniGameUI());
     }
 
@@ -90,31 +94,59 @@ public class MiniGameManager : MonoBehaviour
     {
         if(isStart)
         {
-            uiManager.gameObject.SetActive(true);
-            uiManager.SetHomeGame();
+            if (uiManager != null)
+            {
+                uiManager.gameObject.SetActive(true);
+                uiManager.SetHomeGame();
+            }
         }
         if (!isGameOver)
         {
             elapsedTime += Time.deltaTime;
             MiniGameUIManager.Instance.gameUI.UpdateTimeUI(elapsedTime);
+            SetTimeCnt(elapsedTime);
+            CalTotalScore(miniGameScore, elapsedTime);
         }
+
     }
 
+    public void SetTimeCnt(float time)
+    {
+        if (isGameOver) return;
+        elapsedTime = time;
+    }
+
+    public void SetCoinCnt(int coin)
+    {
+        if (isGameOver) return;
+        miniGameScore = coin;
+        Debug.Log($"{miniGameScore}세팅 코인");
+    }
 
     public void AddScore(int score)
     {
+        Debug.Log($"{score}애드");
         miniGameScore += score;
         uiManager.gameUI.UpdateScoreUI(miniGameScore);
+        SetCoinCnt(miniGameScore);
+        Debug.Log($"{miniGameScore}코인");
     }
 
-    public int CalTotalScore()
+    public void CalTotalScore()
     {
-        int totalScore = 0;
+        totalScore = 0; 
         totalScore += miniGameScore * 100;
         totalScore += (int)elapsedTime * 10;
 
         uiManager.gameOverUI.UpdateTotalScoreUI(totalScore);
-        return totalScore;
+    }
+    public int CalTotalScore(int coin, float score)
+    {
+        int _score = 0;
+        _score += coin * 100;
+        _score += (int)score * 10;
+
+        return _score;
     }
 
     public void StartGame()
@@ -134,11 +166,18 @@ public class MiniGameManager : MonoBehaviour
 
     public void GameOver()
     {
-       // if (isGameOver) return;
-        totalScore = CalTotalScore();
-        isGameOver = true;
-        Debug.Log("게임 오버!");
+        //CalTotalScore();
+        Debug.Log($"elapsedTime{elapsedTime}");
+        Debug.Log($"miniGameScore{miniGameScore}");
 
+        float finalTime = elapsedTime;
+        int finalScore = miniGameScore;
+
+        totalScore = finalScore * 100 + (int)finalTime * 10;
+
+        Debug.Log($"{totalScore} - 게임 오버!");
+
+        uiManager.gameOverUI.UpdateTotalScoreUI(totalScore);
 
         GameManager.Instance.SetMiniGameScore(totalScore);
 
@@ -149,8 +188,8 @@ public class MiniGameManager : MonoBehaviour
         }
 
         uiManager.gameUI.UpdateScoreUI(totalScore);
-
         uiManager.SetGameOver();
+        isGameOver = true;
     }
     public void EndMiniGame()
     {
@@ -161,8 +200,6 @@ public class MiniGameManager : MonoBehaviour
         {
             Destroy(uiManager.gameObject);
         }
-
-
 
         // 본게임으로 이동
         Time.timeScale = 1f;

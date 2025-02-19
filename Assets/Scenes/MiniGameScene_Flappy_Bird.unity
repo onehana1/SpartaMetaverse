@@ -758,7 +758,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 380717380}
-  - component: {fileID: 380717381}
   - component: {fileID: 380717382}
   m_Layer: 0
   m_Name: GameManager
@@ -782,20 +781,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &380717381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 380717379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c359376c3b50ed42bb6f9bf6df04be1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFirstLoading: 1
-  isGameOver: 0
 --- !u!114 &380717382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2126,6 +2111,56 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 12, y: 18}
   m_EdgeRadius: 0
+--- !u!1 &832753014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 832753015}
+  - component: {fileID: 832753016}
+  m_Layer: 0
+  m_Name: MiniGmaeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &832753015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832753014}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.949012, y: 3.3747296, z: 4.4410634}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &832753016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832753014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c359376c3b50ed42bb6f9bf6df04be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFirstLoading: 1
+  isGameOver: 0
+  isStart: 1
+  elapsedTime: 0
+  miniGameScore: 0
+  totalScore: 0
 --- !u!1 &835913727
 GameObject:
   m_ObjectHideFlags: 0
@@ -7257,3 +7292,4 @@ SceneRoots:
   - {fileID: 721158280}
   - {fileID: 1064375993}
   - {fileID: 380717380}
+  - {fileID: 832753015}

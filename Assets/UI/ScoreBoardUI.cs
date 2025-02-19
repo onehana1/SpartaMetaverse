@@ -32,7 +32,22 @@ public class ScoreBoardUI : BaseUI
 
     public void UpdateScoreUI(int playerScore)
     {
-        scoreData.Add(("플레이어", playerScore));
+        bool playerExists = false;
+
+        for (int i = 0; i < scoreData.Count; i++)
+        {
+            if (scoreData[i].name == "플레이어")
+            {
+                scoreData[i] = ("플레이어", playerScore); // 기존 점수 갱신
+                playerExists = true;
+                break;
+            }
+        }
+
+        if (!playerExists)
+        {
+            scoreData.Add(("플레이어", playerScore));
+        }
 
         scoreData = scoreData.OrderByDescending(s => s.score).ToList();
 
