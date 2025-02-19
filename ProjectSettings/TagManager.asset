@@ -10,6 +10,7 @@ TagManager:
   - Coin
   - Tombstone
   - CraneDoor
+  - Gift
   layers:
   - Default
   - TransparentFX

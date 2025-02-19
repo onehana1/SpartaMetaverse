@@ -17,12 +17,14 @@ public class CraneController : MonoBehaviour
     [SerializeField] private float joyStickRotationSpeed;   // 회전 속도
 
     private Transform joyStickTransform;
+    private CraneManager craneManager;
 
 
     private void Start()
     {
         startPosition = transform.position; // 크레인의 초기 위치 저장
         joyStickTransform = joyStick.transform;
+        craneManager = FindObjectOfType<CraneManager>();
     }
 
     private void Update()
@@ -39,10 +41,13 @@ public class CraneController : MonoBehaviour
             }
         }
 
-        // 사용자가 아래키를 눌러 집게를 내릴 수도 있음
         if (Input.GetKeyDown(KeyCode.DownArrow) && !isDropping)
         {
             StartCoroutine(DropCrane());
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        { 
+            craneManager.ReleaseGift();
         }
     }
 
@@ -64,7 +69,7 @@ public class CraneController : MonoBehaviour
             transform.position -= new Vector3(0, dropSpeed * Time.deltaTime, 0);
             yield return null;
         }
-
+        craneManager.CatchGift();
         yield return new WaitForSeconds(0.5f); // 집게가 잠시 머무름
 
         // 이후 집게를 다시 올리기

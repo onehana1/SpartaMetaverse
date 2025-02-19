@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GiftMove : MonoBehaviour
@@ -8,10 +9,11 @@ public class GiftMove : MonoBehaviour
     [SerializeField] private float speed = 2f;
 
     private int currentIndex = 0;
+    private bool isCathed =false;
 
     private void Update()
     {
-        if (pathPoints.Length == 0) return;
+        if (isCathed || pathPoints.Length == 0) return;
 
         Vector3 targetPosition = pathPoints[currentIndex].position;
 
@@ -23,5 +25,21 @@ public class GiftMove : MonoBehaviour
         {
             currentIndex = (currentIndex + 1) % pathPoints.Length; // 순환 이동
         }
+    }
+
+    public void catchGift(Vector3 newPos)
+    {
+        isCathed=true;
+        transform.position = newPos;
+
+    }
+    public void ReleaseGift(Vector3 newPos)
+    {
+        isCathed = false;
+        transform.position = newPos;
+    }
+    public void StartMove()
+    {
+        isCathed=false;
     }
 }
