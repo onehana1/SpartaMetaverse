@@ -20,9 +20,21 @@ public class GameOverUI : BaseUI
     public void OnClickRestartButton()
     {
         Debug.Log("로드씬할거임");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(LoadSceneAsync());
+    }
+
+
+    private IEnumerator LoadSceneAsync()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
         Debug.Log("스타트게임으로 가고싶다.");
-        MiniGameManager.Instance.StartGame();
+        MiniGameManager.Instance.StartGame(); // 씬이 완전히 로드된 후 StartGame 실행
     }
 
     public void OnClickExitButton()
