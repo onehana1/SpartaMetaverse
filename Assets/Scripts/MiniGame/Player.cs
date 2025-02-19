@@ -42,22 +42,23 @@ public class Player : MonoBehaviour
         if (_rigidbody == null)
             Debug.LogError("NOT FOUNDED RIGIDBODY");
 
-        isReady = true;
+     //   isReady = true;
 
 
     }
 
     private void Update()
     {
-        if (!isReady) return;
+       // if (!isReady) return;
         if (isDead)
         {
            // Debug.Log("³Ê Á×À½");
 
             if (!gameManager.isGameOver && deathCooldown <= 0)
             {
-                isReady = false;
+                //isReady = false;
                 gameManager.GameOver();
+                this.gameObject.SetActive(false);
             }
             else
             {
