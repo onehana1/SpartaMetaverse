@@ -15,6 +15,9 @@ public class Obstacle : MonoBehaviour
 
     public float widthPadding = 4f;
 
+    [SerializeField] private Sprite sprite1;
+    [SerializeField] private Sprite sprite2;
+
     GameManager gameManager;
 
     public void Start()
@@ -24,6 +27,10 @@ public class Obstacle : MonoBehaviour
     
     public Vector3 SetRandomPlace(Vector3 lastPosition, int obstacleCount)
     {
+        SpriteRenderer childRenderer = GetComponentInChildren<SpriteRenderer>();
+        int randomIndex = Random.Range(0, 2);
+        childRenderer.sprite = (randomIndex == 0) ? sprite1 : sprite2;
+
         float holeSize = Random.Range(holeSizeMin, holeSizeMax);
         float halfHoleSize = holeSize / 2f;
 
