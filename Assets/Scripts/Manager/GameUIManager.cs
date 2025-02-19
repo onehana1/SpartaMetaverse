@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameUIManager : UIManagerBase
 {
     public ScoreBoardUI scoreUI;
+
     private UIState currentState;
 
     public static GameUIManager Instance;

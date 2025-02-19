@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,9 @@ public class PlayerController : BaseController
     private bool isNearDoor = false;
     private bool isNearTomstone = false;
     private bool isNearCraneDoor = false;
+    [SerializeField] private GameObject playerImage;
+    [SerializeField] private GameObject RidePivot;
+    private bool isRide = false;
 
 
 
@@ -52,7 +56,7 @@ public class PlayerController : BaseController
             isNearDoor = false;
             SceneManager.LoadScene("MiniGameScene_Flappy_Bird");
         }
-        else if (isNearTomstone && Input.GetKeyDown(KeyCode.F))
+        if (isNearTomstone && Input.GetKeyDown(KeyCode.F))
         {
             isNearTomstone = false;
             int highScore = GameManager.Instance != null ? GameManager.Instance.GetMiniGameScore() : 0;
@@ -60,10 +64,25 @@ public class PlayerController : BaseController
             GameUIManager.Instance.OpenScoreBoard();
 
         }
-        else if (isNearCraneDoor && Input.GetKeyDown(KeyCode.F))
+        if (isNearCraneDoor && Input.GetKeyDown(KeyCode.F))
         {
             isNearCraneDoor = false;
             SceneManager.LoadScene("MiniGameScene");
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            if (isRide)
+            {
+                playerImage.SetActive(false);
+                RidePivot.SetActive(true);
+            }
+            else
+            {
+                playerImage.SetActive(true);
+                RidePivot.SetActive(false);
+            }
+            isRide = !isRide;
         }
 
     }
@@ -74,7 +93,7 @@ public class PlayerController : BaseController
             isNearDoor = true;
             Debug.Log("집 근처에 있음");
         }
-        else if (other.CompareTag("Tombstone")) 
+        if (other.CompareTag("Tombstone")) 
         {
             isNearTomstone = true;
             Debug.Log("비석 근처에 있음");

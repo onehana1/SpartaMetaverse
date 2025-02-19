@@ -10,12 +10,14 @@ public class CraneManager : MonoBehaviour
 
     private GiftMove gift; 
     private bool isHold = false;
+    private CraneUIManager craneUIManager;
     public void CatchGift()
     {
         if (gift == null) return; 
         isHold = true;
         gift.catchGift(crane.transform.position + new Vector3(0, offsetY, 0)); 
         gift.transform.SetParent(crane.transform);
+       // craneUIManager.IncreaseGiftCount();
     }
 
 
