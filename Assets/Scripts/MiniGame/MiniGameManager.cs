@@ -11,20 +11,20 @@ public class MiniGameManager : MonoBehaviour
     static MiniGameManager gameManager;
 
     private UIManager uiManager;
-    public static bool isFirstLoading = true;
+    public bool isFirstLoading = true;
     public static MiniGameManager Instance
     {
         get { return gameManager; }
     }
 
     private int miniGameScore = 0;
-    private bool isGameStarted = false;
 
     private void Awake()
     {
         if (gameManager == null)
         {
             gameManager = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -38,13 +38,16 @@ public class MiniGameManager : MonoBehaviour
 
     private void Start()
     {
+        uiManager = UIManager.Instance;
         if (!isFirstLoading)
         {
             StartGame();
+            Debug.Log("처음 아님!");
         }
         else
         {
             isFirstLoading = false;
+            Debug.Log("처음임!");
         }
     }
 
@@ -57,19 +60,20 @@ public class MiniGameManager : MonoBehaviour
 
     public void StartGame()
     {
-        isGameStarted = true;
-        Time.timeScale = 1f;
         uiManager.SetPlayGame();
         Debug.Log("미니게임 시작!");
+        StartCoroutine(DelayedTimeScaleChange());
+    }
+    private IEnumerator DelayedTimeScaleChange()
+    {
+        yield return null;
+        Time.timeScale = 1f;
     }
 
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
     public void GameOver()
     {
-        Debug.Log("Game Over");
+        // Debug.Log("Game Over");
+        uiManager.SetGameOver();
     }
     public void EndMiniGame()
     {

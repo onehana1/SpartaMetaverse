@@ -19,7 +19,10 @@ public class GameOverUI : BaseUI
 
     public void OnClickRestartButton()
     {
+        Debug.Log("로드씬할거임");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Debug.Log("스타트게임으로 가고싶다.");
+        MiniGameManager.Instance.StartGame();
     }
 
     public void OnClickExitButton()

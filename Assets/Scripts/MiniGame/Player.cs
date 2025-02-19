@@ -18,8 +18,16 @@ public class Player : MonoBehaviour
 
     MiniGameManager gameManager = null;
 
+    private void Awake()
+    {
+        isDead = false;
+        deathCooldown = 1;
+        Debug.Log("플레이어 Awake");
+    }
+
     private void Start()
     {
+        Debug.Log("플레이어 Start");
         gameManager = MiniGameManager.Instance;
 
         animator = GetComponentInChildren<Animator>();
@@ -30,19 +38,21 @@ public class Player : MonoBehaviour
 
         if (_rigidbody == null)
             Debug.LogError("NOT FOUNDED RIGIDBODY");
+
+
+
+
     }
 
     private void Update()
     {
         if (isDead)
         {
+           // Debug.Log("너 죽음");
+
             if (deathCooldown <= 0)
             {
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-                {
-                    // 게임 재시작
-                    gameManager.RestartGame();
-                }
+                gameManager.GameOver();
             }
             else
             {
@@ -85,7 +95,7 @@ public class Player : MonoBehaviour
         animator.SetInteger("isDead", 1);
         isDead = true;
         deathCooldown = 1f;
-        gameManager.GameOver();
+
     }
 
 }

@@ -17,9 +17,21 @@ public class UIManager : MonoBehaviour
     GameOverUI gameOverUI;
     private UIState currentState;
 
+    public static UIManager Instance;
 
     private void Awake()
     {
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         homeUI = GetComponentInChildren<HomeUI>(true);
         homeUI.Init(this);
         gameUI = GetComponentInChildren<GameUI>(true);
