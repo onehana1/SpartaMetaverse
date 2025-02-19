@@ -8,6 +8,8 @@ public class PlayerController : BaseController
     private Camera camera;
     private bool isNearDoor = false;
     private bool isNearTomstone = false;
+    private bool isNearCraneDoor = false;
+
 
 
     protected override void Start()
@@ -50,13 +52,18 @@ public class PlayerController : BaseController
             isNearDoor = false;
             SceneManager.LoadScene("MiniGameScene_Flappy_Bird");
         }
-        if (isNearTomstone && Input.GetKeyDown(KeyCode.F))
+        else if (isNearTomstone && Input.GetKeyDown(KeyCode.F))
         {
             isNearTomstone = false;
             int highScore = GameManager.Instance != null ? GameManager.Instance.GetMiniGameScore() : 0;
             GameUIManager.Instance.scoreUI.UpdateScoreUI(highScore);
             GameUIManager.Instance.OpenScoreBoard();
 
+        }
+        else if (isNearCraneDoor && Input.GetKeyDown(KeyCode.F))
+        {
+            isNearCraneDoor = false;
+            SceneManager.LoadScene("MiniGameScene");
         }
 
     }
@@ -71,6 +78,11 @@ public class PlayerController : BaseController
         {
             isNearTomstone = true;
             Debug.Log("비석 근처에 있음");
+        }
+        if (other.CompareTag("CraneDoor"))
+        {
+            isNearCraneDoor = true;
+            Debug.Log("크레인집 근처에 있음");
         }
 
     }

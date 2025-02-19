@@ -9,6 +9,7 @@ TagManager:
   - Background
   - Coin
   - Tombstone
+  - CraneDoor
   layers:
   - Default
   - TransparentFX
