@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
             {
                 //isReady = false;
                 gameManager.GameOver();
-                this.gameObject.SetActive(false);
+                //this.gameObject.SetActive(false);
             }
             else
             {

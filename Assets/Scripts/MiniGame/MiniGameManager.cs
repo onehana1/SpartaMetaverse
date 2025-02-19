@@ -13,7 +13,7 @@ public class MiniGameManager : MonoBehaviour
     private UIManager uiManager;
     public bool isFirstLoading = true;
     public bool isGameOver = false;
-
+    private float elapsedTime = 0f;
     public static MiniGameManager Instance
     {
         get { return gameManager; }
@@ -53,16 +53,35 @@ public class MiniGameManager : MonoBehaviour
         }
     }
 
-
+    private void Update()
+    {
+        if (!isGameOver)
+        {
+            elapsedTime += Time.deltaTime;
+            UIManager.Instance.gameUI.UpdateTimeUI(elapsedTime);
+        }
+    }
 
     public void AddScore(int score)
     {
         miniGameScore += score;
+        uiManager.gameUI.UpdateScoreUI(miniGameScore);
+    }
+
+    public void CalTotalScore()
+    {
+        int totalScore = 0;
+        totalScore += miniGameScore * 100;
+        totalScore += (int)elapsedTime * 10;
+
+        uiManager.gameOverUI.UpdateTotalScoreUI(totalScore);
+
     }
 
     public void StartGame()
     {
         isGameOver = false;
+        elapsedTime = 0f;
         uiManager.SetPlayGame();
         Debug.Log("미니게임 시작!");
         StartCoroutine(DelayedTimeScaleChange());
@@ -76,7 +95,7 @@ public class MiniGameManager : MonoBehaviour
     public void GameOver()
     {
         if (isGameOver) return;
-
+        CalTotalScore();
         isGameOver = true;
         uiManager.SetGameOver();
     }

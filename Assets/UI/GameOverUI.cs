@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class GameOverUI : BaseUI
 {
     [SerializeField] private Button restartButton;
     [SerializeField] private Button exitButton;
+    [SerializeField] private TextMeshProUGUI totalText;
 
     public override void Init(UIManager uiManager)
     {
@@ -22,7 +24,6 @@ public class GameOverUI : BaseUI
         Debug.Log("로드씬할거임");
         StartCoroutine(LoadSceneAsync());
     }
-
 
     private IEnumerator LoadSceneAsync()
     {
@@ -41,6 +42,12 @@ public class GameOverUI : BaseUI
     {
         MiniGameManager.Instance.EndMiniGame();
        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void UpdateTotalScoreUI(int score)
+    {
+        totalText.text = $"{score}점";
+
     }
 
     protected override UIState GetUIState()

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    public int scoreValue = 5;
+    int scoreValue = 1;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         Player player = other.GetComponent<Player>();
         if (player != null)
         {
-            GameManager.Instance.AddScore(scoreValue);
+            MiniGameManager.Instance.AddScore(scoreValue);
             Destroy(gameObject);
         }
     }
