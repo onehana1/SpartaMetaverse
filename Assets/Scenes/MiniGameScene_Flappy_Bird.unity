@@ -188,6 +188,10 @@ PrefabInstance:
       propertyPath: highPosY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2219886808101459178, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 7726691482543964191, guid: aeaf84efdce2dc0408a5dfa0e384b562, type: 3}
     - target: {fileID: 5283138088998988619, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
       propertyPath: m_Name
       value: Obstacle (7)
@@ -1125,6 +1129,10 @@ PrefabInstance:
       propertyPath: highPosY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2219886808101459178, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 7726691482543964191, guid: aeaf84efdce2dc0408a5dfa0e384b562, type: 3}
     - target: {fileID: 5283138088998988619, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
       propertyPath: m_Name
       value: Obstacle (2)
@@ -1593,6 +1601,10 @@ PrefabInstance:
       propertyPath: highPosY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2219886808101459178, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 7726691482543964191, guid: aeaf84efdce2dc0408a5dfa0e384b562, type: 3}
     - target: {fileID: 5283138088998988619, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
       propertyPath: m_Name
       value: Obstacle (9)
@@ -1758,6 +1770,8 @@ MonoBehaviour:
   offsetX: 2
   offsetY: 0
   smoothSpeed: 5
+  fallowX: 1
+  fallowY: 0
 --- !u!1001 &923700194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1782,6 +1796,10 @@ PrefabInstance:
       propertyPath: highPosY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2219886808101459178, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 7726691482543964191, guid: aeaf84efdce2dc0408a5dfa0e384b562, type: 3}
     - target: {fileID: 5283138088998988619, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
       propertyPath: m_Name
       value: Obstacle (1)
@@ -1860,6 +1878,10 @@ PrefabInstance:
       propertyPath: highPosY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2219886808101459178, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 7726691482543964191, guid: aeaf84efdce2dc0408a5dfa0e384b562, type: 3}
     - target: {fileID: 5283138088998988619, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
       propertyPath: m_Name
       value: Obstacle (5)
@@ -1938,6 +1960,10 @@ PrefabInstance:
       propertyPath: highPosY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2219886808101459178, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 7726691482543964191, guid: aeaf84efdce2dc0408a5dfa0e384b562, type: 3}
     - target: {fileID: 5283138088998988619, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
       propertyPath: m_Name
       value: Obstacle (4)
@@ -3500,6 +3526,10 @@ PrefabInstance:
       propertyPath: highPosY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2219886808101459178, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 7726691482543964191, guid: aeaf84efdce2dc0408a5dfa0e384b562, type: 3}
     - target: {fileID: 5283138088998988619, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
       propertyPath: m_Name
       value: Obstacle (3)
@@ -3612,6 +3642,10 @@ PrefabInstance:
       propertyPath: highPosY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2219886808101459178, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 7726691482543964191, guid: aeaf84efdce2dc0408a5dfa0e384b562, type: 3}
     - target: {fileID: 5283138088998988619, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
       propertyPath: m_Name
       value: Obstacle (8)
@@ -4477,6 +4511,10 @@ PrefabInstance:
       propertyPath: highPosY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2219886808101459178, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 7726691482543964191, guid: aeaf84efdce2dc0408a5dfa0e384b562, type: 3}
     - target: {fileID: 5283138088998988619, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
       propertyPath: m_Name
       value: Obstacle (6)
@@ -4757,6 +4795,10 @@ PrefabInstance:
       propertyPath: highPosY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2219886808101459178, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 7726691482543964191, guid: aeaf84efdce2dc0408a5dfa0e384b562, type: 3}
     - target: {fileID: 5283138088998988619, guid: 6a7d03fe6528c8544bb88c641c245e29, type: 3}
       propertyPath: m_Name
       value: Obstacle

@@ -41,5 +41,12 @@ public class BgLooper : MonoBehaviour
         {
             obstacleLastPosition = obstacle.SetRandomPlace(obstacleLastPosition, obstacleCount);
         }
+
+        Coin coin = collision.GetComponent<Coin>();
+        if (coin)
+        {
+            Destroy(coin.gameObject);
+            return;
+        }
     }
 }

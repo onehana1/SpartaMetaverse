@@ -320,7 +320,7 @@ TextureImporter:
         width: 96
         height: 79
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -341,7 +341,7 @@ TextureImporter:
         width: 96
         height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -349,6 +349,69 @@ TextureImporter:
       bones: []
       spriteID: 22154a2029b6492468390933b67d7036
       internalID: -1733036963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JunimoKart_11
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 869
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db959eca10730da4c9eabaa443eb52cb
+      internalID: 1944735840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JunimoKart_12
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 869
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3de5b4fccf8e16e4cb80b8fb2ebf9165
+      internalID: 1620611765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JunimoKart_13
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 869
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcba4d2d9a4d57040aa533e4a56b8ec9
+      internalID: 368300908
       vertices: []
       indices: 
       edges: []
@@ -367,6 +430,9 @@ TextureImporter:
       JunimoKart_0: -1953956202
       JunimoKart_1: -1970205393
       JunimoKart_10: -1733036963
+      JunimoKart_11: 1944735840
+      JunimoKart_12: 1620611765
+      JunimoKart_13: 368300908
       JunimoKart_2: -1360986368
       JunimoKart_3: -2116563313
       JunimoKart_4: -1821493797

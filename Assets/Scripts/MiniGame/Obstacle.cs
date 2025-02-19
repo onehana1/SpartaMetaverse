@@ -17,6 +17,9 @@ public class Obstacle : MonoBehaviour
 
     [SerializeField] private Sprite sprite1;
     [SerializeField] private Sprite sprite2;
+    [SerializeField] private GameObject coinPrefab;
+
+    public float coinSpawnPercent = 0.5f;
 
     GameManager gameManager;
 
@@ -41,6 +44,13 @@ public class Obstacle : MonoBehaviour
         placePosition.y = Random.Range(lowPosY, highPosY);
 
         transform.position = placePosition;
+
+        if (coinPrefab != null && Random.value < coinSpawnPercent)
+        { 
+            float randomYOffset = Random.Range(2.0f, 3.5f);
+            Vector3 coinPosition = topObject.position + new Vector3(0, randomYOffset, 0);
+            GameObject coin = Instantiate(coinPrefab, coinPosition, Quaternion.identity);
+        }
 
         return placePosition;
     }
