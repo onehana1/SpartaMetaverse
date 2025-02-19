@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class GameUI : BaseUI
 {
-    [SerializeField] private TextMeshProUGUI waveText;
-    [SerializeField] private Slider hpSlider;
+    [SerializeField] private TextMeshProUGUI score;
+    [SerializeField] private TextMeshProUGUI time;
+
 
     private void Start()
     {

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject); // 씬 전환 시 삭제되지 않음
+            
         }
         else
         {

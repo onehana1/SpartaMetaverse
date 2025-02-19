@@ -362,7 +362,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -383,7 +383,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -404,7 +404,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -412,6 +412,48 @@ TextureImporter:
       bones: []
       spriteID: bcba4d2d9a4d57040aa533e4a56b8ec9
       internalID: 368300908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JunimoKart_14
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 771
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6ff415958d400f4e801b76869cd931b
+      internalID: -631620569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JunimoKart_15
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 771
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d959ee43cf7e0c245baee10063faaa33
+      internalID: -72252846
       vertices: []
       indices: 
       edges: []
@@ -433,6 +475,8 @@ TextureImporter:
       JunimoKart_11: 1944735840
       JunimoKart_12: 1620611765
       JunimoKart_13: 368300908
+      JunimoKart_14: -631620569
+      JunimoKart_15: -72252846
       JunimoKart_2: -1360986368
       JunimoKart_3: -2116563313
       JunimoKart_4: -1821493797

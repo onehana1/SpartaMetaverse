@@ -10,6 +10,8 @@ public class MiniGameManager : MonoBehaviour
 {
     static MiniGameManager gameManager;
 
+    private UIManager uiManager;
+    public static bool isFirstLoading = true;
     public static MiniGameManager Instance
     {
         get { return gameManager; }
@@ -29,8 +31,25 @@ public class MiniGameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        uiManager = FindObjectOfType<UIManager>();
+
         Time.timeScale = 0f;
     }
+
+    private void Start()
+    {
+        if (!isFirstLoading)
+        {
+            StartGame();
+        }
+        else
+        {
+            isFirstLoading = false;
+        }
+    }
+
+
+
     public void AddScore(int score)
     {
         miniGameScore += score;
@@ -40,6 +59,7 @@ public class MiniGameManager : MonoBehaviour
     {
         isGameStarted = true;
         Time.timeScale = 1f;
+        uiManager.SetPlayGame();
         Debug.Log("미니게임 시작!");
     }
 
@@ -57,7 +77,9 @@ public class MiniGameManager : MonoBehaviour
         GameManager.Instance.SetMiniGameScore(miniGameScore);
 
         // 본게임으로 이동
+        Time.timeScale = 1f;
         SceneManager.LoadScene("SampleScene");
+
 
     }
 }
