@@ -10,14 +10,14 @@ public enum UIState
     GameOver,
 }
 
-public class UIManager : MonoBehaviour
+public class MiniGameUIManager : MonoBehaviour
 {
     public HomeUI homeUI;
     public GameUI gameUI;
     public GameOverUI gameOverUI;
     private UIState currentState;
 
-    public static UIManager Instance;
+    public static MiniGameUIManager Instance;
 
     private void Awake()
     {

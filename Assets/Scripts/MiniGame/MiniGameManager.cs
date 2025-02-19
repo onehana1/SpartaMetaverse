@@ -10,7 +10,7 @@ public class MiniGameManager : MonoBehaviour
 {
     static MiniGameManager gameManager;
 
-    private UIManager uiManager;
+    private MiniGameUIManager uiManager;
     public bool isFirstLoading = true;
     public bool isGameOver = false;
     private float elapsedTime = 0f;
@@ -20,6 +20,8 @@ public class MiniGameManager : MonoBehaviour
     }
 
     private int miniGameScore = 0;
+    private int totalScore = 0;
+
 
     private void Awake()
     {
@@ -33,14 +35,14 @@ public class MiniGameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        uiManager = FindObjectOfType<UIManager>();
+        uiManager = FindObjectOfType<MiniGameUIManager>();
 
         Time.timeScale = 0f;
     }
 
     private void Start()
     {
-        uiManager = UIManager.Instance;
+        uiManager = MiniGameUIManager.Instance;
         if (!isFirstLoading)
         {
             StartGame();
@@ -58,7 +60,7 @@ public class MiniGameManager : MonoBehaviour
         if (!isGameOver)
         {
             elapsedTime += Time.deltaTime;
-            UIManager.Instance.gameUI.UpdateTimeUI(elapsedTime);
+            MiniGameUIManager.Instance.gameUI.UpdateTimeUI(elapsedTime);
         }
     }
 
@@ -68,14 +70,14 @@ public class MiniGameManager : MonoBehaviour
         uiManager.gameUI.UpdateScoreUI(miniGameScore);
     }
 
-    public void CalTotalScore()
+    public int CalTotalScore()
     {
         int totalScore = 0;
         totalScore += miniGameScore * 100;
         totalScore += (int)elapsedTime * 10;
 
         uiManager.gameOverUI.UpdateTotalScoreUI(totalScore);
-
+        return totalScore;
     }
 
     public void StartGame()
@@ -95,19 +97,23 @@ public class MiniGameManager : MonoBehaviour
     public void GameOver()
     {
         if (isGameOver) return;
-        CalTotalScore();
+        totalScore = CalTotalScore();
         isGameOver = true;
         uiManager.SetGameOver();
     }
     public void EndMiniGame()
     {
         // 미니게임 점수를 GameManager에 저장
-        GameManager.Instance.SetMiniGameScore(miniGameScore);
+        GameManager.Instance.SetMiniGameScore(totalScore);
+        Destroy(uiManager.gameObject);
+
+        if (uiManager != null)
+        {
+            Destroy(uiManager.gameObject);
+        }
 
         // 본게임으로 이동
         Time.timeScale = 1f;
         SceneManager.LoadScene("SampleScene");
-
-
     }
 }

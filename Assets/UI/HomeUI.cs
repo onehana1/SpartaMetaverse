@@ -8,7 +8,7 @@ public class HomeUI : BaseUI
     [SerializeField] private Button startButton;
     [SerializeField] private Button exitButton;
 
-    public override void Init(UIManager uiManager)
+    public override void Init(MiniGameUIManager uiManager)
     {
         base.Init(uiManager);
         startButton.onClick.AddListener(OnClickStartButton);

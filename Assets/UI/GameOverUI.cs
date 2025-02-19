@@ -12,7 +12,7 @@ public class GameOverUI : BaseUI
     [SerializeField] private Button exitButton;
     [SerializeField] private TextMeshProUGUI totalText;
 
-    public override void Init(UIManager uiManager)
+    public override void Init(MiniGameUIManager uiManager)
     {
         base.Init(uiManager);
         restartButton.onClick.AddListener(OnClickRestartButton);

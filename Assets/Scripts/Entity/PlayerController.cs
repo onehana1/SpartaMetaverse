@@ -45,7 +45,7 @@ public class PlayerController : BaseController
 
         if (isNearDoor && Input.GetKeyDown(KeyCode.F))
         {
-            SceneManager.LoadScene("MiniGameScene");
+            SceneManager.LoadScene("MiniGameScene_Flappy_Bird");
         }
 
     }
