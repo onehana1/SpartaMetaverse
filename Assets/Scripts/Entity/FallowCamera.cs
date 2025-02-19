@@ -11,6 +11,9 @@ public class FallowCamera : MonoBehaviour
     private float minX, maxX, minY, maxY;
     [SerializeField] private float offsetX, offsetY;
     [SerializeField] private float smoothSpeed = 5f; // 카메라 이동 속도
+    [SerializeField] private bool fallowX  = true;
+    [SerializeField] private bool fallowY = true;
+
 
 
     private void Start()
@@ -34,12 +37,24 @@ public class FallowCamera : MonoBehaviour
     {
         if (target == null) return;
 
-        Vector3 targetPosition = new Vector3(target.position.x + offsetX, target.position.y + offsetY, transform.position.z);
+        Vector3 targetPosition = transform.position;
 
-        if (mapBounds != null)
+        if (fallowX)
         {
-            targetPosition.x = Mathf.Clamp(targetPosition.x + offsetX, minX, maxX);
-            targetPosition.y = Mathf.Clamp(targetPosition.y + offsetY, minY, maxY);
+            targetPosition.x = target.position.x + offsetX;
+            if (mapBounds != null)
+            {
+                targetPosition.x = Mathf.Clamp(targetPosition.x, minX, maxX);
+            }
+        }
+
+        if (fallowY)
+        {
+            targetPosition.y = target.position.y + offsetY;
+            if (mapBounds != null)
+            {
+                targetPosition.y = Mathf.Clamp(targetPosition.y, minY, maxY);
+            }
         }
 
         transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
