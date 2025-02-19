@@ -12,7 +12,7 @@ public class GameOverUI : BaseUI
     [SerializeField] private Button exitButton;
     [SerializeField] private TextMeshProUGUI totalText;
 
-    public override void Init(MiniGameUIManager uiManager)
+    public override void Init(UIManagerBase uiManager)
     {
         base.Init(uiManager);
         restartButton.onClick.AddListener(OnClickRestartButton);
@@ -50,8 +50,8 @@ public class GameOverUI : BaseUI
 
     }
 
-    protected override MiniGameUIState GetUIState()
+    protected override UIState GetUIState()
     {
-        return MiniGameUIState.GameOver;
+        return UIState.GameOver;
     }
 }

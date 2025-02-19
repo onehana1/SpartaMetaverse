@@ -4,15 +4,16 @@ using UnityEngine;
 
 public abstract class BaseUI : MonoBehaviour
 {
-    protected MiniGameUIManager uiManager;
+    protected UIManagerBase uiManager;
 
-    public virtual void Init(MiniGameUIManager uiManager)
+    public virtual void Init(UIManagerBase uiManager)
     {
         this.uiManager = uiManager;
     }
 
-    protected abstract MiniGameUIState GetUIState();
-    public void SetActive(MiniGameUIState state)
+    protected abstract UIState GetUIState();
+
+    public void SetActive(UIState state)
     {
         this.gameObject.SetActive(GetUIState() == state);
     }
