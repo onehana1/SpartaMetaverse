@@ -35,15 +35,6 @@ public class MiniGameUIManager : UIManagerBase
         ChangeState(UIState.Home);
     }
 
-    public static void EnsureExists()
-    {
-        if (Instance == null)
-        {
-            GameObject obj = new GameObject("MiniGameUIManager");
-            Instance = obj.AddComponent<MiniGameUIManager>();
-            DontDestroyOnLoad(obj);
-        }
-    }
 
     public void SetHomeGame()
     {

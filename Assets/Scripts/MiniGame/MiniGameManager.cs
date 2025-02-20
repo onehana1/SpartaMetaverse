@@ -183,7 +183,7 @@ public class MiniGameManager : MonoBehaviour
 
         if (uiManager == null)
         {
-            Debug.LogError("MiniGameUIManager가 null입니다! 다시 찾습니다.");
+            Debug.LogError("MiniGameUIManager가 null");
             uiManager = FindObjectOfType<MiniGameUIManager>();
         }
 
