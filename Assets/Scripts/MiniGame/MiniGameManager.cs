@@ -179,7 +179,7 @@ public class MiniGameManager : MonoBehaviour
 
         uiManager.gameOverUI.UpdateTotalScoreUI(totalScore);
 
-        GameManager.Instance.SetMiniGameScore(totalScore);
+        ScoreManager.Instance.SetMiniGameScore(totalScore);
 
         if (uiManager == null)
         {
@@ -194,7 +194,7 @@ public class MiniGameManager : MonoBehaviour
     public void EndMiniGame()
     {
         // 미니게임 점수를 GameManager에 저장
-        GameManager.Instance.SetMiniGameScore(totalScore);
+        ScoreManager.Instance.SetMiniGameScore(totalScore);
 
         if (uiManager != null)
         {

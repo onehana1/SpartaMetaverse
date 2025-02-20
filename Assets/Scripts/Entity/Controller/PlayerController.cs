@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : BaseController
 {
-    private Camera camera;
     public bool isNearDoor = false;
     public bool isNearTomstone = false;
     public bool isNearCraneDoor = false;
@@ -19,7 +18,6 @@ public class PlayerController : BaseController
     protected override void Start()
     {
         base.Start();
-        camera = Camera.main;
     }
 
     protected override void HandleAction()
@@ -60,7 +58,7 @@ public class PlayerController : BaseController
         if (isNearTomstone && Input.GetKeyDown(KeyCode.F))
         {
             isNearTomstone = false;
-            int highScore = GameManager.Instance != null ? GameManager.Instance.GetMiniGameScore() : 0;
+            int highScore = ScoreManager.Instance != null ? ScoreManager.Instance.GetMiniGameScore() : 0;
             GameUIManager.Instance.scoreUI.UpdateScoreUI(highScore);
             GameUIManager.Instance.OpenScoreBoard();
 
