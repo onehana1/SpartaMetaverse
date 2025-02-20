@@ -8,7 +8,7 @@ public class GameUIManager : UIManagerBase
     public ScoreBoardUI scoreUI;
 
     private UIState currentState;
-    public EnterUI enterUI; // Enter UI ÂüÁ¶
+    public EnterUI enterUI;
 
     public static GameUIManager Instance;
 
@@ -17,7 +17,6 @@ public class GameUIManager : UIManagerBase
         if (Instance == null)
         {
             Instance = this;
-            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -25,6 +24,51 @@ public class GameUIManager : UIManagerBase
             return;
         }
     }
+
+    private void OnEnable()
+    {
+        GameEventManager.OnEnterDoor += HandleEnterDoor;
+        GameEventManager.OnEnterCraneDoor += HandleEnterCraneDoor;
+        GameEventManager.OnEnterTomstone += HandleEnterTomstone;
+
+    }
+
+    private void OnDisable()
+    {
+        GameEventManager.OnEnterDoor -= HandleEnterDoor;
+        GameEventManager.OnEnterCraneDoor -= HandleEnterCraneDoor;
+        GameEventManager.OnEnterTomstone -= HandleEnterTomstone;
+
+    }
+
+    private void HandleEnterDoor(bool state)
+    {
+        if (state)
+        {
+            enterUI.gameObject.SetActive(true);
+            enterUI.UpdateGameInfo(0);
+        }
+    }
+
+    private void HandleEnterCraneDoor(bool state)
+    {
+        if (state)
+        {
+            enterUI.gameObject.SetActive(true);
+            enterUI.UpdateGameInfo(1);
+        }
+    }
+
+    private void HandleEnterTomstone(bool state)
+    {
+        if (state)
+        {
+            int highScore = ScoreManager.Instance.GetMiniGameScore();
+            scoreUI.UpdateScoreUI(highScore);
+            OpenScoreBoard();
+        }
+    }
+
 
     public void OpenScoreBoard()
     {
@@ -36,11 +80,6 @@ public class GameUIManager : UIManagerBase
         scoreUI.gameObject.SetActive(false);
     }
 
-    public void OpenEnterUI()
-    {
-        enterUI.gameObject.SetActive(true);
-        enterUI.UpdateGameInfo();
-    }
 
     public void CloseEnterUI()
     {

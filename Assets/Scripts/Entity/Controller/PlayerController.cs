@@ -51,23 +51,17 @@ public class PlayerController : BaseController
 
         if (isNearDoor && Input.GetKeyDown(KeyCode.F))
         {
-           
-            GameUIManager.Instance.OpenEnterUI();
-            // SceneManager.LoadScene("MiniGameScene_Flappy_Bird");
+            GameEventManager.TriggerEnterDoor(true);
         }
+
         if (isNearTomstone && Input.GetKeyDown(KeyCode.F))
         {
-            isNearTomstone = false;
-            int highScore = ScoreManager.Instance != null ? ScoreManager.Instance.GetMiniGameScore() : 0;
-            GameUIManager.Instance.scoreUI.UpdateScoreUI(highScore);
-            GameUIManager.Instance.OpenScoreBoard();
-
+            GameEventManager.TriggerEnterTomstone(true);
         }
+
         if (isNearCraneDoor && Input.GetKeyDown(KeyCode.F))
         {
-            
-            GameUIManager.Instance.OpenEnterUI();
-            // SceneManager.LoadScene("MiniGameScene");
+            GameEventManager.TriggerEnterCraneDoor(true);
         }
 
         if (Input.GetKeyDown(KeyCode.H))
@@ -103,7 +97,22 @@ public class PlayerController : BaseController
             isNearCraneDoor = true;
             Debug.Log("크레인집 근처에 있음");
         }
-
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("HouseDoor"))
+        {
+            isNearDoor = false;
+        }
+        if (other.CompareTag("Tombstone"))
+        {
+            isNearTomstone = false;
+        }
+        if (other.CompareTag("CraneDoor"))
+        {
+            isNearCraneDoor = false;
+        }
+        
     }
 
 }

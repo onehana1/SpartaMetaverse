@@ -58,21 +58,10 @@ public class EnterUI : BaseUI
         }
 
     }
-    public void UpdateGameInfo()
+    public void UpdateGameInfo(int index)
     {
-        if (playerController != null)
-        {
-            if (playerController.isNearDoor)
-            {
-                gameNameText.text = miniGameData[0].name;
-                gameDisText.text = miniGameData[0].description;
-            }
-            if (playerController.isNearCraneDoor)
-            {
-                gameNameText.text = miniGameData[1].name;
-                gameDisText.text = miniGameData[1].description;
-            }
-        }
+        gameNameText.text = miniGameData[index].name;
+        gameDisText.text = miniGameData[index].description;
     }
 
 
