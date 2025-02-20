@@ -39,6 +39,7 @@ public class GameUIManager : UIManagerBase
     public void OpenEnterUI()
     {
         enterUI.gameObject.SetActive(true);
+        enterUI.UpdateGameInfo();
     }
 
     public void CloseEnterUI()
