@@ -37,7 +37,6 @@ public class CraneManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("부딪히긴하는데");
         if (!isHold && collision.CompareTag("Gift"))
         {
             isHold = true;

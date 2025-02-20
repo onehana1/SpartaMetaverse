@@ -9,9 +9,12 @@ public class CraneUIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText; // 점수 표시할 UI
     [SerializeField] private Button exitButton; // Exit 버튼
+    [SerializeField] private Button retryButton; // retry
+
+
 
     private int curGiftCnt = 0; // 현재 잡은 선물 개수
-    private int maxGiftCnt = 5; // 최대 잡을 수 있는 개수
+    private int maxGiftCnt = 6; // 최대 잡을 수 있는 개수
 
     private void Start()
     {
@@ -36,6 +39,12 @@ public class CraneUIManager : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
+
+    public void OnRetryButtonClicked()
+    {
+        SceneManager.LoadScene("MiniGameScene");
+    }
+
 
     public void UpdateScoreUI()
     {
