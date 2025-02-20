@@ -6,6 +6,7 @@ public class ScoreManager : MonoBehaviour
 
     private int totalScore = 0;
     private int bestMiniGameScore = 0;
+    private int caughtGiftCount = 0;
 
     private void Awake()
     {
@@ -35,5 +36,14 @@ public class ScoreManager : MonoBehaviour
     public int GetMiniGameScore()
     {
         return bestMiniGameScore;
+    }
+
+    public void SetCaughtGiftCount(int count)
+    {
+        caughtGiftCount = count;
+    }
+    public int GetCaughtGiftCount()
+    {
+        return caughtGiftCount;
     }
 }

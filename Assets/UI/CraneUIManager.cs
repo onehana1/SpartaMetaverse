@@ -34,6 +34,7 @@ public class CraneUIManager : MonoBehaviour
 
     public void OnExitButtonClicked()
     {
+        ScoreManager.Instance.SetCaughtGiftCount(curGiftCnt);
         SceneManager.LoadScene("SampleScene");
     }
 

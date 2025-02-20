@@ -46,7 +46,7 @@ public class CraneController : MonoBehaviour
             StartCoroutine(DropCrane());
         }
         if (Input.GetKeyDown(KeyCode.V))
-        { 
+        {
             craneManager.ReleaseGift();
         }
     }
