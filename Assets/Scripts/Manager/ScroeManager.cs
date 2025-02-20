@@ -8,12 +8,17 @@ public class ScoreManager : MonoBehaviour
     private int bestMiniGameScore = 0;
     private int caughtGiftCount = 0;
 
+    private const string BestScoreKey = "BestMiniGameScore";
+
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            LoadBestScore();
+
         }
         else
         {
@@ -30,7 +35,11 @@ public class ScoreManager : MonoBehaviour
     public void SetMiniGameScore(int score)
     {
         if (score > bestMiniGameScore)
+        {
             bestMiniGameScore = score;
+            PlayerPrefs.SetInt(BestScoreKey, bestMiniGameScore); // BestScoreKeyㅇㅔ 저장
+            PlayerPrefs.Save();
+        }
     }
 
     public int GetMiniGameScore()
@@ -45,5 +54,9 @@ public class ScoreManager : MonoBehaviour
     public int GetCaughtGiftCount()
     {
         return caughtGiftCount;
+    }
+    private void LoadBestScore()
+    {
+        bestMiniGameScore = PlayerPrefs.GetInt(BestScoreKey, 0); // 없으면 0
     }
 }

@@ -2896,6 +2896,7 @@ Transform:
   - {fileID: 1691557442}
   - {fileID: 513337000}
   - {fileID: 639494675}
+  - {fileID: 1348183974}
   m_Father: {fileID: 225454623}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &426170841
@@ -3804,7 +3805,6 @@ Transform:
   m_Children:
   - {fileID: 35437532}
   - {fileID: 1236860021}
-  - {fileID: 1348183974}
   m_Father: {fileID: 382260699}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &639494676
@@ -11512,7 +11512,7 @@ Transform:
   m_Children:
   - {fileID: 890902704}
   - {fileID: 357164783}
-  m_Father: {fileID: 639494675}
+  m_Father: {fileID: 382260699}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &1348183975
 TilemapRenderer:
