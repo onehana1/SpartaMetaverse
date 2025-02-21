@@ -26,13 +26,28 @@ public class CraneManager : MonoBehaviour
         if (gift == null) return; 
                 isHold = false;
 
-        gift.transform.SetParent(null);
+        
         gift.ReleaseGift(crane.transform.position + new Vector3(0, dropY, 0));
 
+        StartCoroutine(DropGift(gift, crane.transform.position + new Vector3(0, dropY, 0)));
+        gift.transform.SetParent(null);
+    }
+
+    IEnumerator DropGift(GiftMove gift, Vector3 dropPos)
+    {
+        float dropDurantion = 3f;
+        float time = 0;
+        Vector3 startPos = gift.transform.position;
+
+        while (time < dropDurantion)
+        {
+            float t = time / dropDurantion;
+            gift.transform.position = Vector3.Lerp(startPos, dropPos, time);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        gift.transform.position = dropPos;
         gift.StartMove();
-
-
-        gift = null; 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
